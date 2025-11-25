@@ -1,5 +1,17 @@
+'use client'
+
+import React, { useState } from "react";
 
 
+export default function UploadCSV() {
+const [file, setFile] = useState<File | null>(null);
+const [msg, setMsg] = useState("");
+
+
+const uploadCSV = async () => {
+if (!file) return;
+const formData = new FormData();
+formData.append("csv", file);
 formData.append("message", msg);
 
 

@@ -1,39 +1,57 @@
+"use client"
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
-
-import React from "react";
-import Link from "next/link";
-
+const API_BASE = "http://localhost:5000";
 
 export default function Dashboard() {
-return (
-<div className="min-h-screen bg-gray-50 p-8">
-<div className="max-w-5xl mx-auto">
-<h1 className="text-3xl font-bold text-gray-900 mb-6">Dashboard</h1>
+  const [user, setUser] = useState<any>(null);
+  const router = useRouter();
 
+  useEffect(() => {
+    const fetchUser = async () => {
+      const token = localStorage.getItem("token");
+      if (!token) return router.push("/buy");
 
-<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-{/* Connect WhatsApp */}
-<Link href="/connect" className="block p-6 bg-white shadow-md rounded-2xl hover:shadow-lg transition">
-<h2 className="text-xl font-semibold mb-2">Connect WhatsApp</h2>
-<p className="text-gray-600 text-sm">Scan QR to connect your WhatsApp Web session.</p>
-</Link>
+      try {
+        const res = await axios.get(`${API_BASE}/me`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
 
+        setUser(res.data);
 
-{/* Upload CSV */}
-<Link href="/upload" className="block p-6 bg-white shadow-md rounded-2xl hover:shadow-lg transition">
-<h2 className="text-xl font-semibold mb-2">Upload Contacts CSV</h2>
-<p className="text-gray-600 text-sm">Upload phone numbers to send bulk messages.</p>
-</Link>
+        if (!res.data.isActive) {
+          router.push("/buy"); // redirect if not active
+        }
+      } catch {
+        router.push("/login");
+      }
+    };
 
+    fetchUser();
+  }, []);
 
-{/* Send Messages */}
-<Link href="/send" className="block p-6 bg-white shadow-md rounded-2xl hover:shadow-lg transition">
-<h2 className="text-xl font-semibold mb-2">Send Bulk Messages</h2>
-<p className="text-gray-600 text-sm">Write and send messages to uploaded contacts.</p>
-</Link>
-</div>
-</div>
-</div>
-);
+  if (!user) return <div>Loading...</div>;
+
+  return (
+    <div className="p-8 min-h-screen bg-gray-100">
+      <h1 className="text-3xl font-bold mb-4">Welcome, {user.name}</h1>
+      {/* Add /connect and /bulk buttons */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <button
+          onClick={() => router.push("/connect")}
+          className="bg-blue-500 text-white p-4 rounded hover:bg-blue-600"
+        >
+          Connect WhatsApp
+        </button>
+        <button
+          onClick={() => router.push("/bulk")}
+          className="bg-green-500 text-white p-4 rounded hover:bg-green-600"
+        >
+          Bulk Sender
+        </button>
+      </div>
+    </div>
+  );
 }
-
