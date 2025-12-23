@@ -14,7 +14,7 @@ const router = useRouter();
     setIsLoading(true);
 
     try {
-      const res = await fetch("http://50.2.26.50:5000/login", {
+      const res = await fetch("https://api.chatmate.site/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),

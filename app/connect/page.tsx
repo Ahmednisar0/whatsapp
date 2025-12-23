@@ -5,7 +5,7 @@ import QRCode from "qrcode";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
-const API_BASE = "http://50.2.26.50:5001";
+const API_BASE = "https://api.chatmate.site";
 
 interface User {
   _id: string;
@@ -28,7 +28,7 @@ export default function Connect() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await axios.get<User>(`http://50.2.26.50:5000/me`, {
+        const res = await axios.get<User>(`https://api.chatmate.site/auth/me`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUser(res.data);

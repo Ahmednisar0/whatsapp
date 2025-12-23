@@ -7,7 +7,7 @@ export default function Verify({ params }: { params: any }) {
 
   useEffect(() => {
     async function verifyEmail() {
-      const res = await fetch(`http://50.2.26.50:5000/verify/${token}`);
+      const res = await fetch(`https://api.chatmate.site/auth/verify/${token}`);
       const text = await res.text();
       setMsg(text);
     }

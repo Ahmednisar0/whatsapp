@@ -25,7 +25,7 @@ export default function UploadCSV() {
     formData.append("message", msg);
 
     try {
-      await fetch("http://50.2.26.50:5000/send-bulk", {
+      await fetch("https://api.chatmate.site/auth/send-bulk", {
         method: "POST",
         body: formData,
       });

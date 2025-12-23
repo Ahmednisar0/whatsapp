@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 
-const API_BASE = "http://50.2.26.50:5001";
+const API_BASE = "https://api.chatmate.site";
 
 export default function Bulk() {
   const [file, setFile] = useState<File | null>(null);
@@ -21,7 +21,7 @@ export default function Bulk() {
       if (!token) return;
 
       try {
-        const res = await fetch("http://50.2.26.50:5000/me", {
+        const res = await fetch("https://api.chatmate.site/auth/me", {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();
