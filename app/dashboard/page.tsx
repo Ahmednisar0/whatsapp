@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
-const API_BASE = "https://api.chatmate.site";
+const API_BASE = "https://api.chatmate.site/auth";
 
 export default function Dashboard() {
   const [user, setUser] = useState<any>(null);
