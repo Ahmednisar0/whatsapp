@@ -69,7 +69,7 @@ const tools: Tool[] = [
   },
 ];
 
-const API_BASE = "http://50.2.26.50:5000";
+const API_BASE = "https://api.chatmate.site/auth";
 
 export default function BuyingPage() {
   const router = useRouter();
