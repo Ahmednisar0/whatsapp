@@ -1,33 +1,33 @@
-"use client";
+'use client';
 
-import { useState } from "react";
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '@/app/context/AuthContext';
 
 export default function Login() {
-  const [form, setForm] = useState({ email: "", password: "" });
-  const [msg, setMsg] = useState("");
+  const [form, setForm] = useState({ email: '', password: '' });
+  const [msg, setMsg] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [errors, setErrors] = useState({ email: "", password: "" });
+  const [errors, setErrors] = useState({ email: '', password: '' });
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
+  const { login } = useAuth();
 
   const validateForm = () => {
     let valid = true;
-    const newErrors = { email: "", password: "" };
+    const newErrors = { email: '', password: '' };
 
-    // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!form.email.trim()) {
-      newErrors.email = "Email is required";
+      newErrors.email = 'Email is required';
       valid = false;
     } else if (!emailRegex.test(form.email)) {
-      newErrors.email = "Please enter a valid email address";
+      newErrors.email = 'Please enter a valid email address';
       valid = false;
     }
 
-    // Password validation
     if (!form.password) {
-      newErrors.password = "Password is required";
+      newErrors.password = 'Password is required';
       valid = false;
     }
 
@@ -37,8 +37,8 @@ export default function Login() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setMsg("");
-    
+    setMsg('');
+
     if (!validateForm()) {
       return;
     }
@@ -46,31 +46,15 @@ export default function Login() {
     setIsLoading(true);
 
     try {
-      const res = await fetch("https://api.chatmate.site/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
+      await login(form.email, form.password);
+      setMsg('Login Successful! Redirecting...');
+      setForm({ email: '', password: '' });
 
-      const data = await res.json();
-      
-      if (res.ok && data.token) {
-        // Store token
-        localStorage.setItem("token", data.token);
-        setMsg("🎉 Login Successful! Redirecting...");
-        
-        // Clear form
-        setForm({ email: "", password: "" });
-        
-        // Redirect after a brief delay
-        setTimeout(() => {
-          router.push('/dashboard');
-        }, 1500);
-      } else {
-        setMsg(data.error || "Login failed. Please check your credentials.");
-      }
+      setTimeout(() => {
+        router.push('/dashboard');
+      }, 1500);
     } catch (error) {
-      setMsg("Network error. Please check your connection and try again.");
+      setMsg('Login failed. Please try again.');
     } finally {
       setIsLoading(false);
     }

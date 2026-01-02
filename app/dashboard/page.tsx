@@ -1,12 +1,9 @@
-"use client"
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { useRouter } from "next/navigation";
-
-const API_BASE = "https://api.chatmate.site/auth";
+'use client';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@/app/context/AuthContext';
 
 export default function Dashboard() {
-  const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [stats, setStats] = useState({
     messagesSent: 1247,
@@ -15,31 +12,15 @@ export default function Dashboard() {
     remainingQuota: 5000
   });
   const router = useRouter();
+  const { isLoggedIn, user } = useAuth();
 
   useEffect(() => {
-    const fetchUser = async () => {
-      const token = localStorage.getItem("token");
-      if (!token) return router.push("/buy");
-
-      try {
-        const res = await axios.get(`${API_BASE}/me`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-
-        setUser(res.data);
-
-        if (!res.data.isActive) {
-          router.push("/buy");
-        }
-      } catch {
-        router.push("/login");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchUser();
-  }, [router]);
+    if (!isLoggedIn) {
+      router.push('/login');
+    } else {
+      setLoading(false);
+    }
+  }, [isLoggedIn, router]);
 
   const formatNumber = (num: number) => {
     return new Intl.NumberFormat().format(num);
@@ -66,7 +47,7 @@ export default function Dashboard() {
     );
   }
 
-  if (!user) return null;
+  if (!user) return <div></div>;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 p-4 md:p-8">
@@ -83,7 +64,7 @@ export default function Dashboard() {
                 </p>
               </div>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3">
-                Welcome back, <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-green-600">{user.name}</span>
+                Welcome back, <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-green-600">{user?.email?.split('@')[0]}</span>
               </h1>
               <p className="text-gray-600 text-lg max-w-2xl">
                 Here's what's happening with your business communications today.
@@ -94,25 +75,17 @@ export default function Dashboard() {
               <div className="relative">
                 <div className="w-14 h-14 bg-gradient-to-br from-emerald-500 to-green-500 rounded-xl flex items-center justify-center shadow-lg">
                   <span className="text-white font-bold text-xl">
-                    {user.name?.charAt(0).toUpperCase()}
+                    {user?.email?.charAt(0).toUpperCase()}
                   </span>
                 </div>
-                <div className={`absolute -bottom-1 -right-1 w-5 h-5 rounded-full border-2 border-white ${
-                  user.isActive ? 'bg-emerald-500' : 'bg-amber-500'
-                }`}></div>
+                <div className={`absolute -bottom-1 -right-1 w-5 h-5 rounded-full border-2 border-white bg-emerald-500`}></div>
               </div>
               <div>
-                <p className="font-semibold text-gray-900">{user.name}</p>
-                <p className="text-sm text-gray-500 truncate max-w-[180px]">{user.email}</p>
-                <div className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium mt-2 ${
-                  user.isActive 
-                    ? 'bg-emerald-100 text-emerald-800' 
-                    : 'bg-amber-100 text-amber-800'
-                }`}>
-                  <span className={`w-2 h-2 rounded-full mr-2 ${
-                    user.isActive ? 'bg-emerald-500' : 'bg-amber-500'
-                  }`}></span>
-                  {user.isActive ? 'Premium Active' : 'Account Pending'}
+                <p className="font-semibold text-gray-900">{user?.email?.split('@')[0]}</p>
+                <p className="text-sm text-gray-500 truncate max-w-[180px]">{user?.email}</p>
+                <div className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium mt-2 bg-emerald-100 text-emerald-800`}>
+                  <span className={`w-2 h-2 rounded-full mr-2 bg-emerald-500`}></span>
+                  Premium Active
                 </div>
               </div>
             </div>
@@ -424,9 +397,8 @@ export default function Dashboard() {
                   </div>
                 </button>
 
-                <button 
+                <button
                   onClick={() => {
-                    localStorage.removeItem("token");
                     router.push("/login");
                   }}
                   className="flex items-center space-x-4 p-5 rounded-2xl border border-emerald-200 hover:border-red-300 hover:bg-red-50 transition-all duration-200 group w-full"
@@ -447,16 +419,16 @@ export default function Dashboard() {
                   <h3 className="font-semibold text-gray-900 mb-4">Account Status</h3>
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                      <span className="text-gray-600">Subscription</span>
-                      <span className="font-semibold text-emerald-600">Premium</span>
+                      <span className="text-gray-600">Email</span>
+                      <span className="font-semibold text-emerald-600 text-sm">{user?.email}</span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-gray-600">Validity</span>
-                      <span className="font-semibold text-gray-900">Lifetime</span>
+                      <span className="text-gray-600">Status</span>
+                      <span className="font-semibold text-emerald-600">Active</span>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-gray-600">Support</span>
-                      <span className="font-semibold text-gray-900">24/7 Priority</span>
+                      <span className="font-semibold text-gray-900">24/7</span>
                     </div>
                   </div>
                 </div>
