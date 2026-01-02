@@ -278,44 +278,218 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gradient-to-br from-emerald-900 to-green-900 text-white py-12 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <h3 className="text-2xl font-bold mb-4">BulkSender</h3>
-              <p className="text-emerald-200">Professional WhatsApp messaging solution for businesses.</p>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4">Product</h4>
-              <ul className="space-y-2 text-emerald-200">
-                <li><a href="#" className="hover:text-white transition-colors">Features</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Pricing</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Demo</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4">Company</h4>
-              <ul className="space-y-2 text-emerald-200">
-                <li><a href="#" className="hover:text-white transition-colors">About</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Support</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4">Legal</h4>
-              <ul className="space-y-2 text-emerald-200">
-                <li><a href="#" className="hover:text-white transition-colors">Privacy</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Terms</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Security</a></li>
-              </ul>
-            </div>
+      {/* Footer */<footer className="bg-gradient-to-br from-emerald-950 via-emerald-900 to-green-950 text-white py-16 px-4 relative overflow-hidden">
+  {/* Background Elements */}
+  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-emerald-700/10 via-transparent to-transparent"></div>
+  <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-emerald-600/5 rounded-full blur-3xl"></div>
+  <div className="absolute -top-20 -left-20 w-64 h-64 bg-green-600/5 rounded-full blur-3xl"></div>
+  
+  <div className="max-w-7xl mx-auto relative z-10">
+    {/* Main Content Grid */}
+    <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+      {/* Brand Section */}
+      <div className="lg:col-span-2 space-y-6">
+        <div className="flex items-center space-x-3 group cursor-pointer">
+          <div className="p-2.5 bg-gradient-to-br from-emerald-500 to-green-500 rounded-xl group-hover:from-emerald-400 group-hover:to-green-400 transition-all duration-300 shadow-lg">
+            <Mail className="w-6 h-6" />
           </div>
-          <div className="border-t border-emerald-800 pt-8 text-center text-emerald-200">
-            <p>2024 BulkSender. All rights reserved.</p>
+          <div>
+            <h3 className="text-3xl font-bold bg-gradient-to-r from-white to-emerald-100 bg-clip-text text-transparent">
+              BulkSender
+            </h3>
+            <p className="text-emerald-300/90 text-sm">Professional Messaging Platform</p>
           </div>
         </div>
-      </footer>
+        <p className="text-emerald-200/80 max-w-md text-lg leading-relaxed">
+          Enterprise-grade WhatsApp messaging solution trusted by 10,000+ businesses worldwide.
+        </p>
+        <div className="flex items-center space-x-4 pt-4">
+          <div className="px-4 py-2 bg-emerald-900/50 backdrop-blur-sm rounded-lg border border-emerald-700/30">
+            <span className="text-emerald-200 font-semibold">⚡</span>
+            <span className="ml-2 text-sm">99.9% Uptime</span>
+          </div>
+          <div className="px-4 py-2 bg-emerald-900/50 backdrop-blur-sm rounded-lg border border-emerald-700/30">
+            <span className="text-emerald-200 font-semibold">🔒</span>
+            <span className="ml-2 text-sm">GDPR Compliant</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Product Links */}
+      <div>
+        <h4 className="font-bold text-xl mb-6 flex items-center space-x-2">
+          <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+          <span>Product</span>
+        </h4>
+        <ul className="space-y-4">
+          {[
+            { name: 'Features', icon: '✨', desc: 'Powerful tools' },
+            { name: 'Pricing', icon: '💰', desc: 'Flexible plans' },
+            { name: 'Demo', icon: '🎬', desc: 'Live preview' },
+            { name: 'API Docs', icon: '📚', desc: 'Developer friendly' }
+          ].map((item) => (
+            <li key={item.name}>
+              <a href="#" className="group flex items-center space-x-3 p-2 rounded-lg hover:bg-emerald-900/30 transition-all duration-200">
+                <span className="text-lg">{item.icon}</span>
+                <div>
+                  <span className="text-emerald-100 group-hover:text-white font-medium transition-colors">
+                    {item.name}
+                  </span>
+                  <p className="text-xs text-emerald-300/60">{item.desc}</p>
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Company Links */}
+      <div>
+        <h4 className="font-bold text-xl mb-6 flex items-center space-x-2">
+          <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+          <span>Company</span>
+        </h4>
+        <ul className="space-y-4">
+          {[
+            { name: 'About Us', icon: '🏢', desc: 'Our story' },
+            { name: 'Contact', icon: '📞', desc: 'Get in touch' },
+            { name: 'Support', icon: '🛟', desc: '24/7 help' },
+            { name: 'Careers', icon: '💼', desc: 'Join our team' }
+          ].map((item) => (
+            <li key={item.name}>
+              <a href="#" className="group flex items-center space-x-3 p-2 rounded-lg hover:bg-emerald-900/30 transition-all duration-200">
+                <span className="text-lg">{item.icon}</span>
+                <div>
+                  <span className="text-emerald-100 group-hover:text-white font-medium transition-colors">
+                    {item.name}
+                  </span>
+                  <p className="text-xs text-emerald-300/60">{item.desc}</p>
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Legal Links */}
+      <div>
+        <h4 className="font-bold text-xl mb-6 flex items-center space-x-2">
+          <div className="w-2 h-2 bg-emerald-300 rounded-full animate-pulse"></div>
+          <span>Legal</span>
+        </h4>
+        <ul className="space-y-4">
+          {[
+            { name: 'Privacy Policy', icon: '🛡️', desc: 'Your data safe' },
+            { name: 'Terms of Service', icon: '📋', desc: 'Usage terms' },
+            { name: 'Security', icon: '🔐', desc: 'Bank-level security' },
+            { name: 'Compliance', icon: '📊', desc: 'Standards we meet' }
+          ].map((item) => (
+            <li key={item.name}>
+              <a href="#" className="group flex items-center space-x-3 p-2 rounded-lg hover:bg-emerald-900/30 transition-all duration-200">
+                <span className="text-lg">{item.icon}</span>
+                <div>
+                  <span className="text-emerald-100 group-hover:text-white font-medium transition-colors">
+                    {item.name}
+                  </span>
+                  <p className="text-xs text-emerald-300/60">{item.desc}</p>
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    {/* Newsletter Section */}
+    <div className="mb-12 p-6 bg-gradient-to-r from-emerald-900/40 to-green-900/40 rounded-2xl border border-emerald-700/30 backdrop-blur-sm">
+      <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="flex-1">
+          <h4 className="text-xl font-bold mb-2 flex items-center space-x-2">
+            <Mail className="w-5 h-5 text-emerald-300" />
+            <span>Stay Updated</span>
+          </h4>
+          <p className="text-emerald-200/80">Get the latest features and updates delivered to your inbox.</p>
+        </div>
+        <div className="flex-1 max-w-md">
+          <div className="flex gap-2">
+            <input 
+              type="email" 
+              placeholder="Enter your email" 
+              className="flex-1 px-4 py-3 bg-emerald-950/50 border border-emerald-700/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent placeholder-emerald-300/50"
+            />
+            <button className="px-6 py-3 bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-400 hover:to-green-400 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-emerald-500/25 hover:scale-[1.02]">
+              Subscribe
+            </button>
+          </div>
+          <p className="text-xs text-emerald-300/60 mt-2">No spam, unsubscribe anytime.</p>
+        </div>
+      </div>
+    </div>
+
+    {/* Bottom Section */}
+    <div className="border-t border-emerald-800/50 pt-8">
+      <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="text-center md:text-left">
+          <p className="text-emerald-200/80">
+            © 2024 - 2026 BulkSender. All rights reserved.
+          </p>
+          <p className="text-sm text-emerald-300/60 mt-1">
+            Crafted with ❤️ for businesses worldwide
+          </p>
+        </div>
+        
+        <div className="flex items-center space-x-6">
+          <div className="flex items-center space-x-4">
+            {['twitter', 'linkedin', 'github', 'discord'].map((platform) => (
+              <a 
+                key={platform}
+                href="#" 
+                className="w-10 h-10 rounded-xl bg-emerald-900/50 border border-emerald-700/30 flex items-center justify-center hover:bg-emerald-800/50 hover:border-emerald-600/50 hover:scale-110 transition-all duration-300 group"
+                title={platform.charAt(0).toUpperCase() + platform.slice(1)}
+              >
+                <span className="text-lg group-hover:scale-110 transition-transform">
+                  {platform === 'twitter' ? '🐦' : 
+                   platform === 'linkedin' ? '💼' : 
+                   platform === 'github' ? '💻' : '🎮'}
+                </span>
+              </a>
+            ))}
+          </div>
+          
+          <div className="h-8 w-px bg-emerald-700/50 hidden md:block"></div>
+          
+          <div className="flex items-center space-x-2">
+            <div className="px-3 py-1.5 bg-emerald-900/30 rounded-lg border border-emerald-700/30 text-sm">
+              <span className="text-emerald-300">🌐</span>
+              <span className="ml-2">English</span>
+            </div>
+            <div className="text-sm text-emerald-300/60 flex items-center space-x-1">
+              <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span>
+              <span>All systems operational</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Trust Badges */}
+      <div className="flex flex-wrap justify-center items-center gap-4 mt-8 pt-6 border-t border-emerald-800/30">
+        {[
+          { text: 'SOC 2 Compliant', color: 'from-blue-500/20 to-blue-600/20' },
+          { text: 'GDPR Ready', color: 'from-emerald-500/20 to-green-500/20' },
+          { text: 'PCI DSS', color: 'from-amber-500/20 to-amber-600/20' },
+          { text: 'ISO 27001', color: 'from-purple-500/20 to-purple-600/20' }
+        ].map((badge, index) => (
+          <div 
+            key={index}
+            className={`px-4 py-2 bg-gradient-to-r ${badge.color} backdrop-blur-sm rounded-lg border border-white/10 text-xs font-medium text-emerald-100/80`}
+          >
+            {badge.text}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</footer>
     </div>
   );
 }
