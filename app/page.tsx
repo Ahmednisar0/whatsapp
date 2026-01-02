@@ -311,7 +311,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="border-t border-emerald-800 pt-8 text-center text-emerald-200">
-            <p>2024 BulkSender. All rights reserved.</p>
+            <p>2026 BulkSender. All rights reserved.</p>
           </div>
         </div>
       </footer>
