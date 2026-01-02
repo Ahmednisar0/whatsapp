@@ -278,43 +278,121 @@ export default function HomePage() {
         </div>
       </section>
 
-      <footer className="bg-gradient-to-br from-emerald-900 to-green-900 text-white py-12 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <h3 className="text-2xl font-bold mb-4">BulkSender</h3>
-              <p className="text-emerald-200">Professional WhatsApp messaging solution for businesses.</p>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4">Product</h4>
-              <ul className="space-y-2 text-emerald-200">
-                <li><a href="#" className="hover:text-white transition-colors">Features</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Pricing</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Demo</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4">Company</h4>
-              <ul className="space-y-2 text-emerald-200">
-                <li><a href="#" className="hover:text-white transition-colors">About</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Support</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4">Legal</h4>
-              <ul className="space-y-2 text-emerald-200">
-                <li><a href="#" className="hover:text-white transition-colors">Privacy</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Terms</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Security</a></li>
-              </ul>
-            </div>
+      <footer className="bg-gradient-to-br from-emerald-900 via-emerald-800 to-green-900 text-white py-16 px-4 md:px-8">
+  <div className="max-w-7xl mx-auto">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+      {/* Brand Section */}
+      <div className="lg:col-span-2">
+        <div className="flex items-center gap-3 mb-6">
+          <div className="w-10 h-10 bg-gradient-to-r from-emerald-400 to-green-400 rounded-lg flex items-center justify-center">
+            <MessageSquare className="w-6 h-6 text-white" />
           </div>
-          <div className="border-t border-emerald-800 pt-8 text-center text-emerald-200">
-            <p>2024 BulkSender. All rights reserved.</p>
-          </div>
+          <h3 className="text-3xl font-bold bg-gradient-to-r from-emerald-300 to-green-300 bg-clip-text text-transparent">
+            BulkSender
+          </h3>
         </div>
-      </footer>
+        <p className="text-emerald-100 text-lg max-w-md leading-relaxed">
+          Professional WhatsApp messaging solution for businesses of all sizes.
+          Streamline your communication with our powerful platform.
+        </p>
+        <div className="flex gap-4 mt-8">
+          <a href="#" className="p-3 bg-emerald-800 hover:bg-emerald-700 rounded-full transition-all duration-300 hover:scale-110">
+            <Facebook className="w-5 h-5" />
+          </a>
+          <a href="#" className="p-3 bg-emerald-800 hover:bg-emerald-700 rounded-full transition-all duration-300 hover:scale-110">
+            <Twitter className="w-5 h-5" />
+          </a>
+          <a href="#" className="p-3 bg-emerald-800 hover:bg-emerald-700 rounded-full transition-all duration-300 hover:scale-110">
+            <Linkedin className="w-5 h-5" />
+          </a>
+        </div>
+      </div>
+
+      {/* Quick Links */}
+      <div>
+        <h4 className="text-xl font-bold mb-6 pb-2 border-b border-emerald-700/50 inline-block">Product</h4>
+        <ul className="space-y-4">
+          {['Features', 'Pricing', 'Demo', 'API Docs', 'Integrations'].map((item) => (
+            <li key={item}>
+              <a href="#" className="text-emerald-200 hover:text-white transition-all duration-300 hover:pl-2 flex items-center gap-2 group">
+                <ChevronRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                {item}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h4 className="text-xl font-bold mb-6 pb-2 border-b border-emerald-700/50 inline-block">Company</h4>
+        <ul className="space-y-4">
+          {['About Us', 'Careers', 'Contact', 'Blog', 'Support'].map((item) => (
+            <li key={item}>
+              <a href="#" className="text-emerald-200 hover:text-white transition-all duration-300 hover:pl-2 flex items-center gap-2 group">
+                <ChevronRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                {item}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h4 className="text-xl font-bold mb-6 pb-2 border-b border-emerald-700/50 inline-block">Legal</h4>
+        <ul className="space-y-4">
+          {['Privacy Policy', 'Terms of Service', 'Security', 'Compliance', 'GDPR'].map((item) => (
+            <li key={item}>
+              <a href="#" className="text-emerald-200 hover:text-white transition-all duration-300 hover:pl-2 flex items-center gap-2 group">
+                <ChevronRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                {item}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    {/* Newsletter */}
+    <div className="bg-gradient-to-r from-emerald-800/30 to-green-800/30 rounded-2xl p-8 mb-12 border border-emerald-700/30 backdrop-blur-sm">
+      <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div>
+          <h4 className="text-2xl font-bold mb-2">Stay Updated</h4>
+          <p className="text-emerald-100">Get the latest features and updates directly in your inbox.</p>
+        </div>
+        <div className="flex gap-3 w-full md:w-auto">
+          <input 
+            type="email" 
+            placeholder="Enter your email" 
+            className="px-6 py-3 rounded-full bg-white/10 border border-emerald-600 placeholder-emerald-300 text-white focus:outline-none focus:ring-2 focus:ring-emerald-400 w-full md:w-auto flex-grow"
+          />
+          <button className="px-8 py-3 bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-400 hover:to-green-400 text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 whitespace-nowrap">
+            Subscribe
+          </button>
+        </div>
+      </div>
+    </div>
+
+    {/* Bottom Bar */}
+    <div className="border-t border-emerald-800/50 pt-8">
+      <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="text-emerald-200">
+          <p className="flex items-center gap-2">
+            <Shield className="w-5 h-5 text-emerald-400" />
+            100% Secure & Compliant
+          </p>
+        </div>
+        <p className="text-emerald-200 text-center">
+          © {new Date().getFullYear()} BulkSender. All rights reserved.
+        </p>
+        <div className="flex gap-6 text-emerald-200">
+          <a href="#" className="hover:text-white transition-colors">Cookies</a>
+          <a href="#" className="hover:text-white transition-colors">Sitemap</a>
+          <a href="#" className="hover:text-white transition-colors">Status</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
     </div>
   );
 }
